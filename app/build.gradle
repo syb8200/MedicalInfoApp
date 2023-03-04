@@ -7,6 +7,10 @@ android {
     namespace 'fastcampus.part1.fc_chapter4'
     compileSdk 32
 
+    viewBinding{
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "fastcampus.part1.fc_chapter4"
         minSdk 28
