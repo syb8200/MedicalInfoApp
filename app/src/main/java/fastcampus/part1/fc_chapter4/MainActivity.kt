@@ -2,6 +2,7 @@ package fastcampus.part1.fc_chapter4
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.goInputActivityButton.setOnClickListener {
+            // 명시적 인텐트
             val intent = Intent(this, InputActivity::class.java)
             intent.putExtra("intentMessage", "응급으료정보") // intent로 다른 화면으로 데이터 넘기기
             startActivity(intent)
@@ -27,6 +29,17 @@ class MainActivity : AppCompatActivity() {
 
         binding.deleteButton.setOnClickListener {
             deleteData()
+        }
+
+        binding.emergencyContactLayer.setOnClickListener {
+            // 암시적 인텐트 ("전화를 할 수 있는 앱을 실행시켜줘!" 명확하게 집어서 지정하지 않음)
+            with(Intent(Intent.ACTION_VIEW)) {
+                val phoneNumber = binding.emergencyContactValueTextView.text.toString()
+                    .replace("-", "")
+                data = Uri.parse("tel: $phoneNumber")
+                startActivity(this)
+
+            }
         }
     }
 
