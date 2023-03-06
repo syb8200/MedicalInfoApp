@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import fastcampus.part1.fc_chapter4.databinding.ActivityInputBinding
 
 class InputActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityInputBinding
+    private lateinit var binding: ActivityInputBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +32,7 @@ class InputActivity : AppCompatActivity() {
         // 생년월일 캘린더 구현 (month는 +1을 해줘야 함, .show()를 해야 DatePickerDialog가 보여짐)
         binding.birthDateLayer.setOnClickListener {
             val listener = OnDateSetListener { _, year, month, dayOfMonth ->
-                binding.birthDateTextView.text = "$year-${month.inc()}-$dayOfMonth"
+                binding.birthDateValueTextView.text = "$year-${month.inc()}-$dayOfMonth"
             }
 
             // 오늘까지만 선택 가능하도록 변형해보았음
@@ -39,5 +40,11 @@ class InputActivity : AppCompatActivity() {
             datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
             datePickerDialog.show()
         }
+
+        // 주의사항 체크박스
+        binding.warningCheckBox.setOnCheckedChangeListener { _, isChecked ->
+            binding.warningEditText.isVisible = isChecked
+        }
+        binding.warningEditText.isVisible = binding.warningCheckBox.isChecked
     }
 }
