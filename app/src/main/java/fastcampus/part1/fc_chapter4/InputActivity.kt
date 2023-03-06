@@ -57,6 +57,7 @@ class InputActivity : AppCompatActivity() {
 
     }
 
+    // SharedPreferences에 데이터 저장하기
     private fun saveData() {
         // Context.MODE_PRIVATE : 이 파일을 생성한 앱에서만 접근 가능
         // commit()과 apply()로 데이터를 저장할 수 있지만 -> apply() 권장!
