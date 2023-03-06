@@ -62,12 +62,12 @@ class InputActivity : AppCompatActivity() {
         // commit()과 apply()로 데이터를 저장할 수 있지만 -> apply() 권장!
         // commit() : 메인 스레드에서 작업을 하다보니 사용자가 데이터를 저장하는 동안 다른 작업을 진행할 수 없음
         // apply() : commit()과 달리 다른 스레드에서 작업이 이루어짐 (비동기적)
-        with(getSharedPreferences("userInformation", Context.MODE_PRIVATE).edit()) {
-            putString("name", binding.nameEditText.text.toString())
-            putString("bloodType", getBloodType())
-            putString("emergencyContact", binding.emergencyContactEditText.text.toString())
-            putString("birthDate", binding.birthDateValueTextView.text.toString())
-            putString("warning", getWarning())
+        with(getSharedPreferences(USER_INFORMATION, Context.MODE_PRIVATE).edit()) {
+            putString(NAME, binding.nameEditText.text.toString())
+            putString(BLOOD_TYPE, getBloodType())
+            putString(EMERGENCY_CONTACT, binding.emergencyContactEditText.text.toString())
+            putString(BIRTHDATE, binding.birthDateValueTextView.text.toString())
+            putString(WARNING, getWarning())
             apply()
         }
 
@@ -77,7 +77,7 @@ class InputActivity : AppCompatActivity() {
     private fun getBloodType(): String {
         val bloodAlphabet = binding.bloodTypeSpinner.selectedItem.toString()
         val bloodSign = if (binding.bloodTypePlus.isChecked) "+" else "-"
-        return "$bloodSign $bloodAlphabet"
+        return "$bloodSign$bloodAlphabet"
     }
 
     private fun getWarning(): String {
