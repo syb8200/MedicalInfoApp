@@ -1,5 +1,7 @@
 package fastcampus.part1.fc_chapter4
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -25,5 +27,17 @@ class InputActivity : AppCompatActivity() {
         binding.bloodTypeSpinner.adapter = ArrayAdapter.createFromResource(
             this, R.array.blood_types, android.R.layout.simple_list_item_1
         )
+
+        // 생년월일 캘린더 구현 (month는 +1을 해줘야 함, .show()를 해야 DatePickerDialog가 보여짐)
+        binding.birthDateLayer.setOnClickListener {
+            val listener = OnDateSetListener { _, year, month, dayOfMonth ->
+                binding.birthDateTextView.text = "$year-${month.inc()}-$dayOfMonth"
+            }
+
+            // 오늘까지만 선택 가능하도록 변형해보았음
+            val datePickerDialog = DatePickerDialog(this, listener, 2000, 1, 1)
+            datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+            datePickerDialog.show()
+        }
     }
 }

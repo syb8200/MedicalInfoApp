@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -128,8 +129,8 @@
         android:id="@+id/warningCheckBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="주의사항 노출"
         android:gravity="end|center_vertical"
+        android:text="주의사항 노출"
         app:layout_constraintBottom_toBottomOf="@+id/warningTextView"
         app:layout_constraintEnd_toEndOf="@+id/nameEditText"
         app:layout_constraintStart_toStartOf="@+id/warningEditText"
@@ -141,9 +142,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="주의사항 내용들"
-        app:layout_constraintTop_toBottomOf="@+id/warningCheckBox"
         app:layout_constraintEnd_toEndOf="@id/nameEditText"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/warningCheckBox" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -161,5 +162,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+    <androidx.constraintlayout.helper.widget.Layer
+        android:id="@+id/birthDateLayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="birthDateValueTextView,birthDateImageView"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
